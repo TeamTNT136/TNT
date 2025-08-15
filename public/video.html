@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Video • Linkhayy</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#0b1020;color:#e5e7eb}
+    .wrap{max-width:960px;margin:0 auto;padding:20px}
+    .player{aspect-ratio:16/9;width:100%;border:0;border-radius:12px;background:#111827}
+    .overlay{
+      position:fixed;inset:0;background:rgba(0,0,0,.72);
+      display:flex;align-items:center;justify-content:center;padding:16px
+    }
+    .panel{background:#111827;border:1px solid #1f2937;border-radius:16px;max-width:520px;padding:20px}
+    .row{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+    .btn{padding:12px 16px;border:0;border-radius:10px;cursor:pointer}
+    .primary{background:#2563eb;color:white}
+    .ghost{background:#1f2937;color:#e5e7eb}
+    a{color:#93c5fd}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Video hôm nay</h1>
+
+    <!-- Thay iframe này bằng video của bạn -->
+    <iframe
+      class="player"
+      src="https://drive.google.com/file/d/1h7XqX9bOnf_LNBuHdhtJMgEKhXGu4kII/view"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      title="Video"
+    ></iframe>
+
+    <p><a href="/">← Về trang chủ</a></p>
+  </div>
+
+  <!-- Overlay quảng cáo minh bạch -->
+  <div id="ad" class="overlay" role="dialog" aria-modal="true" aria-labelledby="t">
+    <div class="panel">
+      <h2 id="t">Ưu đãi Shopee tuần này</h2>
+      <p>Hỗ trợ mình bằng cách ghé qua link tiếp thị — hoàn toàn tự nguyện. Bạn có thể tiếp tục xem video ngay sau khi đóng bảng này.</p>
+      <div class="row">
+        <a class="btn primary"
+           href="https://shopee.vn/?affiliate=YOUR_ID"
+           target="_blank" rel="nofollow noopener">Mua sắm</a>
+        <button class="btn ghost" id="continue">Tiếp tục xem</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Chỉ hiện 1 lần trong mỗi phiên duyệt
+    const k='seen_ad_v1';
+    if (sessionStorage.getItem(k)) document.getElementById('ad').style.display='none';
+    document.getElementById('continue').addEventListener('click', ()=>{
+      document.getElementById('ad').style.display='none';
+      sessionStorage.setItem(k, '1');
+    });
+  </script>
+</body>
+</html>
